@@ -9,22 +9,18 @@ abstract class Lang
     protected static $langs;
 
     /** @var string */
-    protected static $default;
-
-    /** @var string */
     protected static $lang;
 
 
     /**
      * Load langs array
      * @param array $langs
-     * @param $default
+     * @param string $lang
      */
-    public static function load(array $langs, $default)
+    public static function load(array $langs, $lang = null)
     {
         static::$langs = $langs;
-        static::$default = $default;
-        static::$lang = $default;
+        static::$lang = $lang ?: key($langs);
     }
 
 
@@ -43,11 +39,13 @@ abstract class Lang
      * Has translation
      *
      * @param string $key
+     * @param string $lang
      * @return bool
      */
-    public static function has($key)
+    public static function has($key, $lang = null)
     {
-        return isset(static::$langs[static::$lang][$key]);
+        $lang = $lang ?: static::$lang;
+        return isset(static::$langs[$lang][$key]);
     }
 
 
@@ -56,12 +54,14 @@ abstract class Lang
      *
      * @param string $key
      * @param array $params
+     * @param string $lang
      * @return string
      */
-    public static function get($key, array $params = [])
+    public static function get($key, array $params = [], $lang = null)
     {
+        $lang = $lang ?: static::$lang;
         if(static::has($key)) {
-            $string = static::$langs[static::$lang][$key];
+            $string = static::$langs[$lang][$key];
             foreach($params as $placeholder => $value) {
                 $string = str_replace('{' . $placeholder . '}', $value, $string);
             }
