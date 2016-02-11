@@ -17,6 +17,7 @@
   "autoload": {
     "psr-4": {
       "Colorium\\Text\\": "/src/Colorium/Text/"
-    }
+    },
+    "files": ["/files/helpers.php"]
   }
 }
