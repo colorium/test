@@ -1,0 +1,22 @@
+{
+  "name": "colorium/text",
+  "type": "library",
+  "description": "Colorium Text Helpers",
+  "homepage": "https://github.com/colorium/text",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Aymeric Assier",
+      "email": "aymeric.assier@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Colorium\\Text\\": "/src/Colorium/Text/"
+    }
+  }
+}
